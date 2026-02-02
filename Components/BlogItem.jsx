@@ -4,7 +4,13 @@ import Link from 'next/link'
 import React from 'react'
 
 const BlogItem = ({title, description, category, image, id}) => {
-    const hasImage = Boolean(image);
+    const isValidImageSrc = (src) => {
+        Boolean(src) && typeof src !== 'string'
+            ? true
+            : typeof src === 'string' && src.trim() !== '' && src !== 'null';
+    }
+    const hasImage = isValidImageSrc(image);
+
   return (
     <div className='max-w-[330px] sm:max-w-[300px] bg-white border border-black hover:shadow-[-7px_7px_0px_#000000]'>
         <Link href={`/blogs/${id}`}>
