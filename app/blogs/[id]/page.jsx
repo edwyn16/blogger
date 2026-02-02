@@ -27,6 +27,9 @@ const page = ({ params }) => {
         fetchBlogData();
     }, [id])
 
+    const authorImage = data?.authorImage || assets.profile_icon;;
+    const hasBlogImage = Boolean(data?.image);
+
     if (!data) return <div className="text-center py-10">Loading...</div>;
 
   return (
@@ -42,12 +45,14 @@ const page = ({ params }) => {
             </div>
             <div className='text-center my-24'>
                 <h1 className='text-2xl sm:text-5xl font-semibold max-w-[700px] mx-auto'> {data.title} </h1>
-                <Image className='mx-auto mt-6 border border-white rounded-full' src={data.authorImg} width={60} height={60} alt='' />
+                <Image className='mx-auto mt-6 border border-white rounded-full' src={authorImage} width={60} height={60} alt='' />
                 <p className='mt-1 pb-2 text-lg max-w-[740px] mx-auto'> {data.author} </p>
             </div>
         </div>
         <div className='mx-5 max-w-[800px] md:mx-auto mt-[-100px] mb-10'>
-            <Image className='border-4 border-white' src={data.image} width={1280} height={720} alt='' />
+            {hasBlogImage ? (
+                <Image className='border-4 border-white' src={data.image} width={1280} height={720} alt='' />
+            ) : null}
             <div className='blog-content' dangerouslySetInnerHTML={{__html:data.description}}></div>
             <div className='my-24'>
                 <p className='text-black font font-semibold my-4'> Share This Article On Social Media </p>
