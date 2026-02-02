@@ -6,23 +6,30 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
 
-const page = ({params}) => {
+const page = ({ params }) => {
     const [data, setData] = useState(null);
-
-    const fetchBlogData = async () => {
-        const response = await axios.get('/api/blog', {
-            params: {
-                id: params.id
-            }
-        })
-        setData(response.data)
-    }
+    const { id } = React.use(params);
 
     useEffect(() => {
+        if (!id) return;
+        try {
+            const fetchBlogData = async () => {
+                const response = await axios.get('/api/blog', {
+                    params: {
+                        id: params.id
+                    }
+                })
+                setData(response.data)
+            }   
+        } catch (error) {
+            console.error("Error fetching blog data:", error);
+        }
         fetchBlogData();
-    }, [])
+    }, [id])
 
-  return (data ?
+    if (!data) return <div className="text-center py-10">Loading...</div>;
+
+  return (
     <>
         <div className='bg-gray-300 py-5 px-5 md:px-12 lg:px-28'>
             <div className='flex justify-between items-center'>
@@ -52,8 +59,8 @@ const page = ({params}) => {
             </div>
         </div>
         <Footer />
-    </> : <></>
-  )
-}
+    </>
+  );
+};
 
-export default page
+export default page;
