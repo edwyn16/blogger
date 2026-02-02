@@ -16,7 +16,7 @@ const page = ({ params }) => {
             try {
                 const response = await axios.get('/api/blog', {
                     params: {
-                        id: params.id
+                        id
                     }
                 })
             setData(response.data)   
