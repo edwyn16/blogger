@@ -12,17 +12,17 @@ const page = ({ params }) => {
 
     useEffect(() => {
         if (!id) return;
-        try {
-            const fetchBlogData = async () => {
+        const fetchBlogData = async () => {
+            try {
                 const response = await axios.get('/api/blog', {
                     params: {
                         id: params.id
                     }
                 })
-                setData(response.data)
-            }   
-        } catch (error) {
-            console.error("Error fetching blog data:", error);
+            setData(response.data)   
+            } catch (error) {
+                console.error('Error fetching blog data:', error);
+            }
         }
         fetchBlogData();
     }, [id])
