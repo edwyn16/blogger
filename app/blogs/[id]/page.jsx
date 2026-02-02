@@ -27,8 +27,13 @@ const page = ({ params }) => {
         fetchBlogData();
     }, [id])
 
-    const authorImage = data?.authorImage || assets.profile_icon;;
-    const hasBlogImage = Boolean(data?.image);
+    const isValidImageSrc = (src) =>
+        Boolean(src) && typeof src !== 'string'
+            ? true
+            : typeof src === 'string' && src.trim() !== '' && src !== 'null';
+
+    const authorImage = isValidImageSrc(data?.authorImage) ? data.authorImage : assets.profile_icon;
+    const hasBlogImage = isValidImageSrc(data?.image);
 
     if (!data) return <div className="text-center py-10">Loading...</div>;
 
