@@ -12,7 +12,7 @@ const page = () => {
         description: '',
         category: 'Startup',
         author: 'Alex Bennett',
-        authorImg: '/authorImg.png'
+        authorImage: '/authorImage.png'
     })
 
     const onChangeHandler = (event) => {
@@ -30,7 +30,7 @@ const page = () => {
         formData.append('description', data.description)
         formData.append('category', data.category)
         formData.append('author', data.author)
-        formData.append('authorImg', data.authorImg)
+        formData.append('authorImage', data.authorImage)
         formData.append('image', image)
 
         const response = await axios.post('/api/blog', formData)
@@ -42,7 +42,7 @@ const page = () => {
                 description: '',
                 category: 'Startup',
                 author: 'Alex Bennett',
-                authorImg: '/authorImg.png'
+                authorImage: '/authorImage.png'
             })
         } else {
             toast.error('Product Not Added')
@@ -76,4 +76,4 @@ const page = () => {
   )
 }
 
-export default page
+export default page;
