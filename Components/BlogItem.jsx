@@ -4,10 +4,13 @@ import Link from 'next/link'
 import React from 'react'
 
 const BlogItem = ({title, description, category, image, id}) => {
+    const hasImage = Boolean(image);
   return (
     <div className='max-w-[330px] sm:max-w-[300px] bg-white border border-black hover:shadow-[-7px_7px_0px_#000000]'>
         <Link href={`/blogs/${id}`}>
+        { hasImage ? (
             <Image className='border-b border-black' src={image} alt='' width={400} height={400} />
+        ) : null}
         </Link>
         <p className='ml-5 mt-5 px-1 inline-block bg-black text-white text-sm'> {category} </p>
         <div className="p-5">
@@ -21,4 +24,4 @@ const BlogItem = ({title, description, category, image, id}) => {
   )
 }
 
-export default BlogItem
+export default BlogItem;
