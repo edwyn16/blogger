@@ -41,7 +41,7 @@ const page = () => {
             </thead>
             <tbody>
               {blogs.map((item, index) => {
-                return <BlogTableItem key={index} mongoId={item._id} title={item.title} author={item.author} authorImg={item.authorImg} date={item.date} deleteBlogs={deleteBlogs} />
+                return <BlogTableItem key={index} mongoId={item._id} title={item.title} author={item.author} authorImage={item.authorImage} date={item.date} deleteBlogs={deleteBlogs} />
               })}
             </tbody>
           </table>
@@ -50,4 +50,4 @@ const page = () => {
   )
 }
 
-export default page
+export default page;
